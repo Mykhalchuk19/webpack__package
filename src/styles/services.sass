@@ -1,0 +1,95 @@
+.services
+  width: 100%
+  padding: 140px 0 120px
+  background-color: #f9f5f2
+
+.services__preface
+  @include standart__title__or__preface(18px, rgb(246,169,55), center, 20px)
+
+.services__title
+  @include standart__title__or__preface(43px, rgb(65,65,65), center, 60px)
+
+.services__wrapper
+  width: 100%
+  max-width: 1310px
+  margin: 0 auto
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.services__button
+  width: 54px 
+  height: 54px
+  border: none
+  border-radius: 50%
+  background-color: #fff
+  outline: none
+
+.services__icon
+  fill: rgb(3,143,214)
+  height: 30px
+  width: 30px
+  text-align: center
+  transition: all 0.2s linear
+.services__button:hover
+  background-color: rgb(3,143,214)
+  .services__icon
+    fill: #fff
+
+
+.services__slider
+  width: 100%
+  max-width: 1110px
+  height: 550px
+  position: relative
+  overflow: hidden
+
+.slider-services__list
+  //width: 100%
+  height: 100%
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+
+.slider-services__item
+  float: left
+  width: 350px
+  height: 550px
+  background-color: #ffffff
+  color: rgb(141,141,141)
+
+.slider-services__item:not(:last-child)
+  margin-right: 30px
+
+.slider-services__image
+  margin-bottom: 30px
+
+.slider-services__icon
+  fill: rgb(207,207,207)
+  height: 75px
+  width: 75px
+  margin-bottom: 25px
+  margin-left: 50px
+
+.slider-services__title
+  font-family: $font-Raleway
+  font-weight: bold
+  font-size: 22px
+  margin-bottom: 30px
+  margin-left: 50px
+
+.slider-services__text
+  font-family: $font-JosefinSans
+  font-size: 16px
+  line-height: 1.5
+  margin-left: 50px
+
+
+.js-services-slider__item-active
+  background-color: rgb(3,143,214)
+  color: #fff
+  transition: all 0.5s linear
+  .slider-services__icon
+    fill: #fff
