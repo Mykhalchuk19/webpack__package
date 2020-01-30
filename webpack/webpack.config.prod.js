@@ -2,6 +2,7 @@ const Webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common.js');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = merge(common, {
   mode: 'production',
@@ -20,6 +21,15 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       filename: 'bundle.css',
     }),
+    new ImageminPlugin({
+      disable: process.env.NODE_ENV !== 'production', // Disable during development
+      pngquant: {
+        quality: '95-100',
+      },
+      jpgquant: {
+        quality: '95-100',
+      },
+    }),
   ],
   module: {
     rules: [
@@ -30,7 +40,22 @@ module.exports = merge(common, {
       },
       {
         test: /\.s(a|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('autoprefixer')({
+                  yoverrideBrowserslist: ['>5%', 'last 2 versions', 'Firefox ESR', 'not ie < 11'],
+                }),
+              ],
+            },
+          },
+          'sass-loader',
+        ],
       },
     ],
   },

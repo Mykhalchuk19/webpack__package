@@ -42,7 +42,21 @@ module.exports = merge(common, {
       },
       {
         test:  /\.(css|s(a|c)ss)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader?sourceMap=true', 'sass-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader?sourceMap=true', 
+        {
+          loader: "postcss-loader",
+          options: {
+            ident: 'postcss',
+            plugins: [
+              require('autoprefixer')({
+                yoverrideBrowserslist: ['last 1 chrome version',
+                  'last 1 firefox version',
+                  'last 1 edge version']
+              }),
+            ]
+          }
+        },
+        'sass-loader']
       }
     ]
   }
